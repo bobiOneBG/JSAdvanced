@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+  <meta charset="utf-8" />
+  <title>Demo</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <h1>List of Items</h1>
+  <ul id="myList">
+    <li>First <a href="#" class="deleteButton">[ Delete]</a></li>
+    <li>Second <a href="#" class="deleteButton">[ Delete]</a></li>
+  </ul>
+  <input id="newItemText" type="text" />
+  <input id="addItem" type="button" value="Add">
+
+  <script>
+    document.getElementById('addItem').addEventListener('click', addItem);
+    let deleteButtons = document.getElementsByClassName("deleteButton");
+    for (const delBtn of deleteButtons) {
+      delBtn.addEventListener('click', deleteItem);
+    }
+
+    function addItem() {
+
+      const itemName = document.getElementById('newItemText').value;
+
+      const elem = document.createElement('li');
+
+      elem.innerHTML = itemName + ` <a href="#" class="deleteButton">[ Delete]</a>`;
+
+      elem.childNodes[1].addEventListener('click', deleteItem);
+
+      document.getElementById('myList').appendChild(elem);
+
+      document.getElementById('newItemText').value = '';
+    }
+
+    function deleteItem(evt) {
+      document.getElementById('myList').removeChild(evt.target.parentNode);
+    }
+  </script>
+</body>
+
+</html>
+<!-- <script src="snake.js"></script> -->
